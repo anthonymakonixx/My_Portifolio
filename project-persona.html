@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Persona Platform - Anthony Makoni</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .project-demo {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .demo-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .demo-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+        .persona-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+        .persona-card:hover {
+            transform: translateY(-5px);
+        }
+        .career-path {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .path-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        .back-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: var(--accent);
+            color: #000;
+            border-radius: 6px;
+            text-decoration: none;
+            margin-bottom: 30px;
+            transition: transform 0.3s;
+        }
+        .back-btn:hover {
+            transform: translateX(-5px);
+        }
+    </style>
+</head>
+<body style="background: #f0f2f5;">
+    <div class="project-demo">
+        <a href="index.html#projects" class="back-btn">← Back to Portfolio</a>
+        
+        <div class="demo-header">
+            <h1 style="font-size: 2.5rem; color: #333; margin-bottom: 10px;">Persona Platform</h1>
+            <p style="color: #666; font-size: 1.1rem;">Adaptive Learning Platform - Hackathon Winner</p>
+        </div>
+
+        <div class="demo-container">
+            <h2 style="color: #333; margin-bottom: 20px;">Interactive Demo</h2>
+            
+            <div class="persona-card">
+                <h3 style="margin-bottom: 15px;">Welcome to Your Personalized Learning Journey</h3>
+                <p style="opacity: 0.9;">This platform adapts to your learning style and career goals. Select your interests below to discover tailored career paths.</p>
+            </div>
+
+            <div style="margin: 30px 0;">
+                <label style="display: block; color: #333; font-weight: 600; margin-bottom: 10px;">What interests you most?</label>
+                <select id="interestSelect" style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 6px; font-size: 1rem;">
+                    <option value="">Select an interest...</option>
+                    <option value="tech">Technology & Programming</option>
+                    <option value="design">Design & Creativity</option>
+                    <option value="business">Business & Management</option>
+                    <option value="science">Science & Research</option>
+                </select>
+            </div>
+
+            <div id="careerPaths" class="career-path" style="display: none;">
+                <h3 style="color: #333; grid-column: 1/-1; margin-bottom: 10px;">Recommended Career Paths</h3>
+            </div>
+        </div>
+
+        <div style="margin-top: 40px; padding: 30px; background: white; border-radius: 12px;">
+            <h3 style="color: #333; margin-bottom: 15px;">Project Details</h3>
+            <p style="color: #666; line-height: 1.8; margin-bottom: 15px;">
+                Built during a 48-hour hackathon, Persona Platform addresses the challenge of helping students discover career paths that align with their interests and abilities. The platform uses adaptive questioning to understand user preferences and provides personalized recommendations.
+            </p>
+            <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 20px;">
+                <span style="padding: 8px 16px; background: #e3f2fd; color: #1976d2; border-radius: 20px; font-size: 0.9rem;">HTML/CSS/JS</span>
+                <span style="padding: 8px 16px; background: #f3e5f5; color: #7b1fa2; border-radius: 20px; font-size: 0.9rem;">Accessibility First</span>
+                <span style="padding: 8px 16px; background: #e8f5e9; color: #388e3c; border-radius: 20px; font-size: 0.9rem;">Responsive Design</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const careerData = {
+            tech: [
+                { title: 'Software Developer', desc: 'Build applications and systems' },
+                { title: 'Data Scientist', desc: 'Analyze data and build ML models' },
+                { title: 'Cybersecurity Analyst', desc: 'Protect systems and data' }
+            ],
+            design: [
+                { title: 'UX Designer', desc: 'Create user-centered experiences' },
+                { title: 'Graphic Designer', desc: 'Visual communication specialist' },
+                { title: 'Product Designer', desc: 'Design digital products' }
+            ],
+            business: [
+                { title: 'Product Manager', desc: 'Lead product development' },
+                { title: 'Business Analyst', desc: 'Analyze business processes' },
+                { title: 'Entrepreneur', desc: 'Start your own venture' }
+            ],
+            science: [
+                { title: 'Research Scientist', desc: 'Conduct scientific research' },
+                { title: 'Lab Technician', desc: 'Support laboratory work' },
+                { title: 'Data Analyst', desc: 'Analyze scientific data' }
+            ]
+        };
+
+        document.getElementById('interestSelect').addEventListener('change', function(e) {
+            const value = e.target.value;
+            const container = document.getElementById('careerPaths');
+            
+            if (value) {
+                container.style.display = 'grid';
+                const paths = careerData[value];
+                const pathsHTML = paths.map(path => `
+                    <div class="path-card">
+                        <h4 style="color: #667eea; margin-bottom: 10px;">${path.title}</h4>
+                        <p style="color: #666; font-size: 0.95rem;">${path.desc}</p>
+                    </div>
+                `).join('');
+                
+                container.innerHTML = '<h3 style="color: #333; grid-column: 1/-1; margin-bottom: 10px;">Recommended Career Paths</h3>' + pathsHTML;
+            } else {
+                container.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

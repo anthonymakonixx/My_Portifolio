@@ -120,18 +120,18 @@ document.addEventListener('DOMContentLoaded', () => {
             offCtx.textBaseline = 'middle';
             offCtx.textAlign = 'center';
             
-            // Scalable Font based on window size
-            let fontSize = width > 768 ? Math.min(width / 12, 110) : 45; 
-            if(width <= 480) fontSize = 35;
+            // Adjusted font size to fit both lines properly
+            let fontSize = width > 768 ? Math.min(width / 10, 140) : 60; 
+            if(width <= 480) fontSize = 45;
             
-            // Draw "Hi, I'm" in normal weight - smaller and lighter
-            offCtx.font = `300 ${fontSize * 0.45}px Inter, sans-serif`;
+            // Draw "Hi, I'm" in medium-bold weight (500) with larger size
+            offCtx.font = `500 ${fontSize * 0.75}px Inter, sans-serif`;
             let hiText = "Hi, I'm";
-            offCtx.fillText(hiText, width / 2, height / 2 - fontSize * 0.6);
+            offCtx.fillText(hiText, width / 2, height / 2 - fontSize * 0.65);
             
-            // Draw "ANTHONY" in bold and brighter - larger
+            // Draw "ANTHONY" in bold weight (700)
             offCtx.font = `700 ${fontSize}px Inter, sans-serif`;
-            offCtx.fillText("ANTHONY", width / 2, height / 2 + fontSize * 0.3);
+            offCtx.fillText("ANTHONY", width / 2, height / 2 + fontSize * 0.45);
             
             const imageData = offCtx.getImageData(0, 0, width, height);
             const data = imageData.data;
